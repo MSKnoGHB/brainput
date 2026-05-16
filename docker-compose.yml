@@ -1,0 +1,31 @@
+#コンテナの定義の宣言
+services:
+  #Djangoコンテナ
+  web_django:
+    #Dockerfileを使用してコンテナを作成
+    build: .
+    #.envから環境変数読み込む
+    env_file:
+      - .env
+    #ホストとコンテナ内を繋ぐポートを指定する 
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    #DBが起動してからDjangoを起動
+    depends_on:
+      - db_postgres
+
+  #PostgreSQLのコンテナ
+  db_postgres:
+    #PostgreSQLの設計図
+    image: postgres:17
+    #変数をコンテナに渡す
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+#データの保存場所を定義
+volumes:
+  db_volume:

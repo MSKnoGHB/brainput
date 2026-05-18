@@ -5,6 +5,11 @@
       <option value="{{ category.id }}">{{ category.name }}</option>
     {% endfor %}
   </select>
+  <select name="sub_category">
+    {% for sub_category in sub_categories %}
+      <option value="{{ sub_category.id }}">{{ sub_category.name }}</option>
+    {% endfor %}
+  </select>
   <input type="text" name="title" placeholder="タイトルを入力">
   <textarea name="command" placeholder="コマンドを入力"></textarea>
   <textarea name="description" placeholder="コマンドの説明を入力"></textarea>

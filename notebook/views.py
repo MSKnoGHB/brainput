@@ -4,7 +4,14 @@ from .forms import NoteForm
 
 # Create your views here.
 
-#一覧画面(ルート画面)
+#ダッシュボード(ルート画面)
+def dashboard(request):
+  notes = Note.objects.all()
+  categories = Category.objects.all()
+  sub_categories = SubCategory.objects.all()
+  return render(request, 'notebook/dashboard.html',{'notes': notes, 'categories': categories, 'sub_categories': sub_categories})
+
+#一覧画面
 def index(request):
   notes = Note.objects.all()
   return render(request, 'notebook/index.html',{'notes': notes})

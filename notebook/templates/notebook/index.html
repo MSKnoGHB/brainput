@@ -1,15 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Brainmput</title>
-  </head>
-  <body>
-    <h1>Brainputのアプリをこれから作成するよ</h1> 
-    {% for note in notes %}
-      {{ note.category }}
-      {{ note.title }}
-      {{ note.command }}
-      {{ note.description }}
-    {% endfor %}
-  </body>
-</html>
+  {% extends 'notebook/base.html' %}
+  {% block content %}
+    <h3>Home</h3> 
+    <div class="container">
+      <div class="row">
+        <div class="'col-12">
+
+          <div class="row">
+            <div class="'col-12 col-md-4">
+
+            </div>
+            <div class="'col-12 col-md-8">
+              <div class="card">
+                <table>
+                  {% for note in notes %}
+                    <thead>
+                      <tr>
+                        <th>サブカテゴリ</th>
+                        <th>タイトル</th>
+                        <th>日付</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ note.category }}</td>
+                        <td>{{ note.title }}</td>
+                        <td>{{ note.created_at|date:"Y/m/d" }}</td>
+                        <td><a href="{% url 'show' id=note.id %}" class="btn btn-sm btn-primary">詳細 </a></td>
+                      </tr>
+                    </tbody>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      
+      
+      
+      
+    
+  {% endblock %}
+  

@@ -1,3 +1,48 @@
 {% extends 'notebook/base.html' %}
 {% block content %}
+  <h3>Check</h3> 
+  <div class="container">
+    <div class="row">
+      <div class="'col-12">
+
+        <div class="row">
+          <div class="'col-12 col-md-4">
+            <ul>
+              <li><a href="{% url 'dashboard' %}">DashBoard</a></li>
+              <li><a href="{% url 'index' %}">コマンドNOTE</a></li>
+              <li>上のプルダウンで一覧や履歴画面を出す</li>
+              <li>エラーNOTE</li>
+              <li>比較NOTE</li>
+            </ul>
+          </div>
+
+          <div class="'col-12 col-md-8">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4>コマンド確認</h4>
+              <a href="{% url 'index' %}" class="btn btn-sm btn-outline-secondary">コマンド一覧に戻る</a>
+            </div>
+            <div class="card p-3 mb-3">
+              <div class="d-flex justify-content-between">
+                <div class="note-category">{{note.category}}</div>
+                <div class="d-flex gap-3">
+                  <a href="{% url 'edit' id=note.id %}" class="btn btn-sm btn-outline-success">編集</a>
+                  <a href="{% url 'destroy' id=note.id %}" class="btn btn-sm btn-outline-danger">削除</a>
+                </div>
+              </div>
+              
+              <div class="note-title mb-3">{{note.title}}</div>
+              <div class="note-command mb-3">{{note.command}}</div>
+              <div class="note-description mb-3">{{note.description}}</div>
+              <div class="note-created-at mb-3">作成日:{{note.created_at|date:"Y/m/d"}}</div>
+              <div class="note-updated-at mb-3">更新日:{{note.updated_at|date:"Y/m/d"}}</div>
+              <h5>参考ファイル</h5>
+              <div class="card p-3 mb-3">
+                <div class="note-category mb-3">参考コードを表示する</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

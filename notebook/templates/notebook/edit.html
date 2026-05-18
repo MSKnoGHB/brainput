@@ -1,3 +1,70 @@
 {% extends 'notebook/base.html' %}
 {% block content %}
+  <h3>Edit</h3> 
+  <div class="container">
+    <div class="row">
+      <div class="'col-12">
+
+        <div class="row">
+          <div class="'col-12 col-md-4">
+            <ul>
+              <li><a href="{% url 'dashboard' %}">DashBoard</a></li>
+              <li><a href="{% url 'index' %}">コマンドNOTE</a></li>
+              <li>上のプルダウンで一覧や履歴画面を出す</li>
+              <li>エラーNOTE</li>
+              <li>比較NOTE</li>
+            </ul>
+          </div>
+
+          <div class="'col-12 col-md-8">
+            <h4>NOTE編集</h4>
+            <div class="card p-3 mb-3">
+              <form method="POST" action="/update/">
+                {% csrf_token %}
+                <div class="d-flex gap-3 justify-content-end">
+                  <button type="submit" class="btn btn-sm btn-outline-success">更新</button>
+                  <a href="{% url 'destroy' id=note.id %}" class="btn btn-sm btn-outline-danger">削除</a>
+                </div>  
+                <div class="d-flex gap-3 mb-3">
+                  <div class="w-100">
+                    <label class="form-label">カテゴリ</label>
+                    <select name="category" class="form-select w-100">
+                      {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.id == note.category.category.id %}selected{% endif %}>
+                          {{ category.name }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="w-100">
+                    <label class="form-label">サブカテゴリ</label>
+                    <select name="sub_category" class="form-select w-100">
+                      {% for sub_category in sub_categories %}
+                        <option value="{{ sub_category.id }}" {% if sub_category.id == note.category.sub_category.id %}selected{% endif %}>
+                          {{ sub_category.name }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="d-flex mb-3">
+                  <input type="text" name="title" value="{{ note.title }}" placeholder="タイトルを入力" class="form-control">
+                </div>
+                <div class="d-flex mb-3">
+                  <textarea name="command" placeholder="コマンドを入力" class="form-control">{{ note.command }}</textarea>
+                </div>
+                <div class="d-flex mb-3">
+                  <textarea name="description" placeholder="コマンドの説明を入力" class="form-control">{{ note.description }}</textarea>
+                </div>
+              </form>
+              <h5>参考ファイル</h5>
+              <div class="card p-3 mb-3">
+                <div class="note-category mb-3">参考コードを表示する</div>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -1,47 +1,48 @@
-  {% extends 'notebook/base.html' %}
-  {% block content %}
-    <h3>Home</h3> 
-    <div class="container">
-      <div class="row">
-        <div class="'col-12">
+{% extends 'notebook/base.html' %}
+{% block content %}
+  <h3>DashBoard</h3> 
+  <div class="container">
+    <div class="row">
+      <div class="'col-12">
 
-          <div class="row">
-            <div class="'col-12 col-md-4">
+        <div class="row">
+          <div class="'col-12 col-md-4">
+            <ul>
+              <li><a href="{% url 'dashboard' %}">DashBoard</a></li>
+              <li><a href="{% url 'index' %}">コマンドNOTE</a></li>
+              <li>上のプルダウンで一覧や履歴画面を出す</li>
+              <li>エラーNOTE</li>
+              <li>比較NOTE</li>
+            </ul>
+          </div>
 
-            </div>
-            <div class="'col-12 col-md-8">
-              <div class="card">
-                <table>
-                  {% for note in notes %}
-                    <thead>
-                      <tr>
-                        <th>サブカテゴリ</th>
-                        <th>タイトル</th>
-                        <th>日付</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{{ note.category }}</td>
-                        <td>{{ note.title }}</td>
-                        <td>{{ note.created_at|date:"Y/m/d" }}</td>
-                        <td><a href="{% url 'show' id=note.id %}" class="btn btn-sm btn-primary">詳細 </a></td>
-                      </tr>
-                    </tbody>
-                  {% endfor %}
-                </table>
-              </div>
+          <div class="'col-12 col-md-8">
+            <h4>コマンド一覧</h4>
+            <div class="card p-3 mb-3">
+              <table>
+                <thead>
+                  <tr class="align-middle">
+                    <th class="pb-3">サブカテゴリ</th>
+                    <th class="pb-3">タイトル</th>
+                    <th class="pb-3">日付</th>
+                    <th class="pb-3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for note in notes %} 
+                    <tr class="align-middle">
+                      <td class="pt-3 pb-3">{{ note.category }}</td>
+                      <td class="pt-3 pb-3">{{ note.title }}</td>
+                      <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
+                      <td class="text-end pt-3 pb-3"><a href="{% url 'show' id=note.id %}" class="btn btn-sm btn-outline-primary">詳細 </a></td>
+                    </tr>
+                  {% endfor %}  
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-      
-      
-      
-      
-    
-  {% endblock %}
-  
+  </div>
+{% endblock %}

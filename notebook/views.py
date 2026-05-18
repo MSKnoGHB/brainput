@@ -26,12 +26,12 @@ def new(request):
 def create(request):
   form = NoteForm(request.POST)
   if form.is_valid():
-    form.save()
-    return redirect('index')
+    note = form.save()
+    return redirect('show', id=note.id)
   else:
     categories = Category.objects.all()
     sub_categories = SubCategory.objects.all()
-    return render(request, 'notebook/new.html', {'categories': categories, 'sub_categories': sub_categories, 'form':form})
+    return render(request, 'notebook/dashboard.html', {'categories': categories, 'sub_categories': sub_categories, 'form':form})
   
 #詳細画面
 def show(request, id):

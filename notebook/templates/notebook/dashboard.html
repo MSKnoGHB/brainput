@@ -1,13 +1,19 @@
 {% extends 'notebook/base.html' %}
 {% block content %}
-  <h3>Home</h3> 
+  <h3>DashBoard</h3> 
   <div class="container">
     <div class="row">
       <div class="'col-12">
 
         <div class="row">
           <div class="'col-12 col-md-4">
-            list
+            <ul>
+              <li><a href="{% url 'dashboard' %}">DashBoard</a></li>
+              <li><a href="{% url 'index' %}">コマンドNOTE</a></li>
+              <li>上のプルダウンで一覧や履歴画面を出す</li>
+              <li>エラーNOTE</li>
+              <li>比較NOTE</li>
+            </ul>
           </div>
 
           <div class="'col-12 col-md-8">
@@ -15,17 +21,26 @@
             <div class="card p-3 mb-3">
               <form method="POST" action="/create/">
                 {% csrf_token %}
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-sm btn-outline-success">新規作成</button>
+                </div>
                 <div class="d-flex gap-3 mb-3">
-                  <select name="category" class="form-select w-50">
-                    {% for category in categories %}
-                      <option value="{{ category.id }}">{{ category.name }}</option>
-                    {% endfor %}
-                  </select>
-                  <select name="sub_category" class="form-select w-50">
-                    {% for sub_category in sub_categories %}
-                      <option value="{{ sub_category.id }}">{{ sub_category.name }}</option>
-                    {% endfor %}
-                  </select>
+                  <div class="w-100">
+                    <label class="form-label">カテゴリ</label>
+                    <select name="category" class="form-select w-100">
+                      {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="w-100">
+                    <label class="form-label">サブカテゴリ</label>
+                    <select name="sub_category" class="form-select w-100">
+                      {% for sub_category in sub_categories %}
+                        <option value="{{ sub_category.id }}">{{ sub_category.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
                 </div>
                 <div class="d-flex mb-3">
                   <input type="text" name="title" placeholder="タイトルを入力" class="form-control">
@@ -36,32 +51,34 @@
                 <div class="d-flex mb-3">
                   <textarea name="description" placeholder="コマンドの説明を入力" class="form-control"></textarea>
                 </div>
-                <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-sm btn-success mb-3">作成</button>
-                </div>
+
               </form>
+              <h5>参考ファイル</h5>
+              <div class="card p-3 mb-3">
+                <div class="note-category mb-3">参考コードを表示する</div>
+              </div>
             </div>
             <h4>NOTE作成履歴</h4>
             <div class="card p-3 mb-3">
               <table>
-                {% for note in notes %}
-                  <thead>
-                    <tr>
-                      <th>サブカテゴリ</th>
-                      <th>タイトル</th>
-                      <th>日付</th>
-                      <th></th>
+                <thead>
+                  <tr class="align-middle">
+                    <th class="pb-3">サブカテゴリ</th>
+                    <th class="pb-3">タイトル</th>
+                    <th class="pb-3">日付</th>
+                    <th class="pb-3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for note in notes %} 
+                    <tr class="align-middle">
+                      <td class="pt-3 pb-3">{{ note.category }}</td>
+                      <td class="pt-3 pb-3">{{ note.title }}</td>
+                      <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
+                      <td class="text-end pt-3 pb-3"><a href="{% url 'show' id=note.id %}" class="btn btn-sm btn-outline-primary">詳細 </a></td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{{ note.category }}</td>
-                      <td>{{ note.title }}</td>
-                      <td>{{ note.created_at|date:"Y/m/d" }}</td>
-                      <td><a href="{% url 'show' id=note.id %}" class="btn btn-sm btn-primary">詳細 </a></td>
-                    </tr>
-                  </tbody>
-                {% endfor %}
+                  {% endfor %}  
+                </tbody>
               </table>
             </div>
           </div>

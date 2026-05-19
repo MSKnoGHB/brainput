@@ -4,19 +4,19 @@ from django.db import models
 
 # memo → Djangoでは null=False, blank=False が自動で適用される
 
-class Category(models.Model):
+class MainCategory(models.Model):
   name = models.CharField(max_length=10)
   def __str__(self):
     return self.name
 
 class SubCategory(models.Model):
-  category = models.ForeignKey(Category, on_delete=models.CASCADE)
+  main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
   name = models.CharField(max_length=10)
   def __str__(self):
     return self.name
   
 class Note(models.Model):
-  category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+  sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
   title = models.CharField(max_length=30)
   command = models.TextField()
   description =  models.TextField()

@@ -2,9 +2,9 @@
 {% block content %}
   <form method="POST" action="/create/">
     {% csrf_token %}
-    <select name="category">
-      {% for category in categories %}
-        <option value="{{ category.id }}">{{ category.name }}</option>
+    <select name="main_category">
+      {% for main_category in main_categories %}
+        <option value="{{ main_category.id }}">{{ main_category.name }}</option>
       {% endfor %}
     </select>
     <select name="sub_category">

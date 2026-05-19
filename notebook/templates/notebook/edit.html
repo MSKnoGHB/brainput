@@ -18,16 +18,16 @@
 
           <div class="'col-12 col-md-8">
             <h4>NOTE編集</h4>
-            <div class="card p-3 mb-3">
+            <div class="card bg-body-tertiary bg-opacity-50 p-3 mb-3">
               <form method="POST" action="{% url 'update' id=note.id %}">
                 {% csrf_token %}
                 <div class="d-flex gap-3 justify-content-end">
-                  <button type="submit" class="btn btn-sm btn-outline-success">更新</button>
-                  <a href="{% url 'destroy' id=note.id %}" class="btn btn-sm btn-outline-danger">削除</a>
+                  <button type="submit" class="btn btn-sm btn-success">更新</button>
+                  <a href="{% url 'destroy' id=note.id %}" class="btn btn-sm btn-danger">削除</a>
                 </div>  
                 <div class="d-flex gap-3 mb-3">
                   <div class="w-100">
-                    <label class="form-label">大カテゴリ</label>
+                    <label class="form-label m-0">大カテゴリ</label>
                     <select name="main_category" class="form-select w-100">
                       {% for main_category in main_categories %}
                         <option value="{{ main_category.id }}" {% if main_category.id == note.sub_category.main_category.id %}selected{% endif %}>
@@ -37,7 +37,7 @@
                     </select>
                   </div>
                   <div class="w-100">
-                    <label class="form-label">小カテゴリ</label>
+                    <label class="form-label m-0">小カテゴリ</label>
                     <select name="sub_category" class="form-select w-100">
                       {% for sub_category in sub_categories %}
                         <option value="{{ sub_category.id }}" {% if sub_category.id == note.sub_category.id %}selected{% endif %}>
@@ -47,17 +47,20 @@
                     </select>
                   </div>
                 </div>
-                <div class="d-flex mb-3">
+                <div class="mb-3">
+                  <label class="form-label m-0">タイトル</label>
                   <input type="text" name="title" value="{{ note.title }}" placeholder="タイトルを入力" class="form-control">
                 </div>
-                <div class="d-flex mb-3">
+                <div class="mb-3">
+                  <label class="form-label m-0">コマンド</label>
                   <textarea name="command" placeholder="コマンドを入力" class="form-control">{{ note.command }}</textarea>
                 </div>
-                <div class="d-flex mb-3">
+                <div class="mb-3">
+                  <label class="form-label m-0">説明</label>
                   <textarea name="description" placeholder="コマンドの説明を入力" class="form-control">{{ note.description }}</textarea>
                 </div>
               </form>
-              <h5>参考ファイル</h5>
+              <p class="m-0">参考ファイル</p>
               <div class="card p-3 mb-3">
                 <div class="mb-3">参考コードを表示する</div>
               </div>              

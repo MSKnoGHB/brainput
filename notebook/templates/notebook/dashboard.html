@@ -18,11 +18,11 @@
 
           <div class="'col-12 col-md-8">
             <h4>NOTE新規作成</h4>
-            <div class="card p-3 mb-3">
+            <div class="card bg-body-tertiary bg-opacity-50 p-3 mb-3">
               <form method="POST" action="/create/">
                 {% csrf_token %}
                 <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-sm btn-outline-success">新規作成</button>
+                  <button type="submit" class="btn btn-sm btn-success">新規作成</button>
                 </div>
                 <div class="d-flex gap-3 mb-3">
                   <div class="w-100">
@@ -59,7 +59,7 @@
             </div>
             <h4>NOTE作成履歴</h4>
             <div class="card p-3 mb-3">
-              <table>
+              <table class="table table-hover">
                 <thead>
                   <tr class="align-middle">
                     <th class="pb-3">サブカテゴリ</th>
@@ -70,11 +70,15 @@
                 </thead>
                 <tbody>
                   {% for note in notes %} 
-                    <tr class="align-middle">
+                    <tr class="align-middle position-relative">
                       <td class="pt-3 pb-3">{{ note.sub_category }}</td>
                       <td class="pt-3 pb-3">{{ note.title }}</td>
                       <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
-                      <td class="text-end pt-3 pb-3"><a href="{% url 'show' id=note.id %}" class="btn btn-sm btn-outline-primary">詳細 </a></td>
+                      <td class="text-end pt-3 pb-3">
+                        <a href="{% url 'show' id=note.id %}" class="stretched-link">
+                          <i class="fa-solid fa-arrow-up-right-from-square text-muted"></i>
+                        </a>
+                      </td>
                     </tr>
                   {% endfor %}  
                 </tbody>

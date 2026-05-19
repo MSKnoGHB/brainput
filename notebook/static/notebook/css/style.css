@@ -1,21 +1,18 @@
 body {
-  /* 1. フォント：日本語が最も美しく見える並び */
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif !important;
-
-  /* 2. 文字の大きさ：小さすぎず、大きすぎない標準サイズ */
   font-size: 16px;
-
-  /* 3. 行間：これが一番大事！文字の高さの「1.7倍」の隙間をあける */
   line-height: 1.75;
-
-  /* 4. 文字の間隔：ほんの少しだけ文字と文字の間を広げて、視認性を上げる */
   letter-spacing: 0.03em;
-
-  /* 5. 文字の色：真っ黒(#000)は目が疲れるので、高級感のある濃いグレーにする */
   color: #333333;
-  
-  /* 背景をほんの少しだけ柔らかい白にする（お好みで） */
   background-color: #fcfcfc;
+}
+
+#copy-message {
+  display: none;
+}
+
+#copy-message.show {
+  display: block;
 }
 
 .form-label,
@@ -31,7 +28,9 @@ body {
 .note-reference {
   font-size: 1em;
 }
+
 .note-created-at,
 .note-updated-at {
   font-size: 0.75em;
 }
+

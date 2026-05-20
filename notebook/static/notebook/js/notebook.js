@@ -13,35 +13,33 @@ if(commandArea){
 }
 
 //カテゴリ選択のデータリストをリセット
-function listReset(categoryId){
-  if(categoryId=='blank'){
-    const mainCategorySelect = document.getElementById('main-category-select')
-    fetch(`/api/list_reset/?category_type=${"main"}`)
-    .then(response => response.json())
-    .then(data =>{
-      console.log(data)
-      mainCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
-      data.forEach(mainCategory => {
-        const option = document.createElement('option')
-        option.value = mainCategory.id
-        option.text = mainCategory.name
-        mainCategorySelect.appendChild(option)
-      })
+function listReset(){
+  const mainCategorySelect = document.getElementById('main-category-select')
+  fetch(`/api/list_reset/?category_type=${"main"}`)
+  .then(response => response.json())
+  .then(data =>{
+    console.log(data)
+    mainCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
+    data.forEach(mainCategory => {
+      const option = document.createElement('option')
+      option.value = mainCategory.id
+      option.text = mainCategory.name
+      mainCategorySelect.appendChild(option)
     })
-    const subCategorySelect = document.getElementById('sub-category-select')
-    fetch(`/api/list_reset/?category_type=${"sub"}`)
-    .then(response => response.json())
-    .then(data =>{
-      console.log(data)
-      mainCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
-      data.forEach(subCategory => {
-        const option = document.createElement('option')
-        option.value = subCategory.id
-        option.text = subCategory.name
-        subCategorySelect.appendChild(option)
-      })
+  })
+  const subCategorySelect = document.getElementById('sub-category-select')
+  fetch(`/api/list_reset/?category_type=${"sub"}`)
+  .then(response => response.json())
+  .then(data =>{
+    console.log(data)
+    subCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
+    data.forEach(subCategory => {
+      const option = document.createElement('option')
+      option.value = subCategory.id
+      option.text = subCategory.name
+      subCategorySelect.appendChild(option)
     })
-  };
+  })
 }
 
 
@@ -51,7 +49,12 @@ const subCategorySelect = document.getElementById('sub-category-select')
 
 mainCategorySelect.addEventListener('change',(e)=>{
   const mainCategoryId = e.target.value
-  listReset(mainCategoryId)
+  
+  if(mainCategoryId == 'blank'){
+    listReset()
+    return
+  };
+  
   fetch(`/api/filtering_main/?main_category_id=${mainCategoryId}`)
   .then(response => response.json())
   .then(data =>{
@@ -72,7 +75,12 @@ mainCategorySelect.addEventListener('change',(e)=>{
 
 subCategorySelect.addEventListener('change',(e)=>{
   const subCategoryId = e.target.value
-  listReset(CategoryId)
+
+  if(subCategoryId == 'blank'){
+    listReset()
+    return
+  };
+
   fetch(`/api/filtering_sub/?sub_category_id=${subCategoryId}`)
   .then(response => response.json())
   .then(data =>{

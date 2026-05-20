@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .models import MainCategory, SubCategory, Note
 from .forms import NoteForm
 
@@ -58,7 +59,35 @@ def destroy(request, id):
   note.delete()
   return redirect('index')
 
+def api_main_categories(request):
+  sub_category_id = request.GET.get('sub_category_id')
+  if sub_category_id == "blank" :
+    main_categories = MainCategory.objects.all()
+  else:
+    sub_category = SubCategory.objects.get(id=sub_category_id)
+    main_category_id = sub_category.main_category.id
+    main_categories = MainCategory.objects.filter(id=main_category_id)
+  data =  list(main_categories.values('id', 'name'))
+  return JsonResponse(data, safe=False)
 
+def api_sub_categories(request):
+  main_category_id = request.GET.get('main_category_id')
+  if main_category_id == "blank":
+    sub_categories = SubCategory.objects.all()
+  else:
+    sub_categories = SubCategory.objects.filter(main_category_id=main_category_id)
     
+  data = list(sub_categories.values('id', 'name'))
+  return JsonResponse(data, safe=False)
     
-    
+def api_select_reset(request):
+  main_category_id = request.GET.get('main_category_id')
+  sub_category_id =  request.GET.get('sub_category_id')
+  
+  main_categories = MainCategory.objects.all()
+  sub_categories = MainCategory.objects.all()
+  
+  main_categories_data= list(main_categories.values('id','name'))
+  sub_categories_data= list(sub_categories.values('id','name'))
+  return JsonResponse({'main_categories_data':main_categories_data, 'sub_categories_data':sub_categories_data}, safe=False)
+  

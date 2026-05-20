@@ -27,7 +27,8 @@
                 <div class="d-flex gap-3 mb-3">
                   <div class="w-100">
                     <label class="form-label">メインカテゴリ</label>
-                    <select name="category" class="form-select w-100">
+                    <select name="main_category" id="main-category-select" class="form-select w-100">
+                      <option value="blank">カテゴリを選択</option>
                       {% for main_category in main_categories %}
                         <option value="{{ main_category.id }}">{{ main_category.name }}</option>
                       {% endfor %}
@@ -35,24 +36,28 @@
                   </div>
                   <div class="w-100">
                     <label class="form-label">サブカテゴリ</label>
-                    <select name="sub_category" class="form-select w-100">
+                    <select name="sub_category" id="sub-category-select" class="form-select w-100 disabled">
+                      <option value="blank">カテゴリを選択</option>
                       {% for sub_category in sub_categories %}
                         <option value="{{ sub_category.id }}">{{ sub_category.name }}</option>
                       {% endfor %}
                     </select>
                   </div>
                 </div>
-                <div class="d-flex mb-3">
+                <div class="mb-3">
+                  <label class="form-label m-0">タイトル</label>
                   <input type="text" name="title" placeholder="タイトルを入力" class="form-control">
                 </div>
-                <div class="d-flex mb-3">
+                <div class="mb-3">
+                  <label class="form-label m-0">コマンド</label>
                   <textarea name="command" placeholder="コマンドを入力" class="form-control"></textarea>
                 </div>
-                <div class="d-flex mb-3">
+                <div class="mb-3">
+                  <label class="form-label m-0">説明</label>
                   <textarea name="description" placeholder="コマンドの説明を入力" class="form-control"></textarea>
                 </div>
               </form>
-              <h5>参考ファイル</h5>
+              <p class="item-label m-0">参考ファイル</p>
               <div class="card p-3 mb-3">
                 <div class="mb-3">参考コードを表示する</div>
               </div>

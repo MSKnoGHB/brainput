@@ -59,35 +59,31 @@ def destroy(request, id):
   note.delete()
   return redirect('index')
 
-def api_main_categories(request):
-  sub_category_id = request.GET.get('sub_category_id')
-  if sub_category_id == "blank" :
+#プルダウンリスト項目リセット
+def api_list_reset(request):
+  category_type = request.GET.get('category_type')
+  if category_type == "main":
     main_categories = MainCategory.objects.all()
+    data= list(main_categories.values('id','name'))
   else:
-    sub_category = SubCategory.objects.get(id=sub_category_id)
-    main_category_id = sub_category.main_category.id
-    main_categories = MainCategory.objects.filter(id=main_category_id)
-  data =  list(main_categories.values('id', 'name'))
+    sub_categories = SubCategory.objects.all()
+    data= list(sub_categories.values('id','name'))
+  return JsonResponse(data, safe=False)  
+
+#メイン選択によるサブデータのフィルタリング
+def api_filtering_main(request):
+  main_category_id = request.GET.get('main_category_id')
+  sub_categories = SubCategory.objects.filter(main_category_id=main_category_id)
+  #リストデータを生成＆レスポンス
+  data= list(sub_categories.values('id','name'))
   return JsonResponse(data, safe=False)
 
-def api_sub_categories(request):
-  main_category_id = request.GET.get('main_category_id')
-  if main_category_id == "blank":
-    sub_categories = SubCategory.objects.all()
-  else:
-    sub_categories = SubCategory.objects.filter(main_category_id=main_category_id)
-    
-  data = list(sub_categories.values('id', 'name'))
+#サブ選択によるメインデータのフィルタリング
+def api_filtering_sub(request):
+  sub_category_id = request.GET.get('sub_category_id')
+  sub_category = SubCategory.objects.get(id=sub_category_id)
+  main_categories = MainCategory.objects.filter(id=sub_category.main_category.id)
+  #リストデータを生成＆レスポンス
+  data= list(main_categories.values('id','name'))
   return JsonResponse(data, safe=False)
-    
-def api_select_reset(request):
-  main_category_id = request.GET.get('main_category_id')
-  sub_category_id =  request.GET.get('sub_category_id')
-  
-  main_categories = MainCategory.objects.all()
-  sub_categories = MainCategory.objects.all()
-  
-  main_categories_data= list(main_categories.values('id','name'))
-  sub_categories_data= list(sub_categories.values('id','name'))
-  return JsonResponse({'main_categories_data':main_categories_data, 'sub_categories_data':sub_categories_data}, safe=False)
   

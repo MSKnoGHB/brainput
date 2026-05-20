@@ -10,7 +10,8 @@ urlpatterns = [
   path('<int:id>/update/', views.update, name='update'),
   path('<int:id>/destroy/', views.destroy, name='destroy'),
   
-  path('api/main_categories/', views.api_main_categories, name='api_main_categories'),
-  path('api/sub_categories/', views.api_sub_categories, name='api_sub_categories')
-  path('api/select_reset/', views.api_select_reset, name='api_select_reset')
+  path('api/list_reset/', views.api_list_reset, name='api_list_reset'),
+  
+  path('api/filtering_main/', views.api_filtering_main, name='api_filtering_main'),
+  path('api/filtering_sub/', views.api_filtering_sub, name='api_filtering_sub')
 ]

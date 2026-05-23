@@ -36,14 +36,21 @@ body {
 
 .sidebar-menu{
   list-style: none;
-}
-
-.sidebar-menu :hover{
-  background-color: rgba(146, 239, 120, 0.2)
+  margin: 0;
+  padding: 0;
   
 }
 
-/*.sidebar-item{}*/
+.sidebar-menu :hover{
+  background-color: rgba(146, 239, 120, 0.2);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item a{
+  text-decoration: none;
+  color: inherit;
+}
 
 .sidebar-label{
   display: block;

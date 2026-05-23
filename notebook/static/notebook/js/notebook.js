@@ -42,7 +42,6 @@ function listReset(){
   })
 }
 
-
 //カテゴリ選択のフィルタリング
 const mainCategorySelect = document.getElementById('main-category-select')
 const subCategorySelect = document.getElementById('sub-category-select')

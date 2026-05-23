@@ -33,3 +33,18 @@ body {
 .note-updated-at {
   font-size: 0.75em;
 }
+
+.sidebar-menu{
+  list-style: none;
+}
+
+.sidebar-menu :hover{
+  background-color: rgba(146, 239, 120, 0.2)
+  
+}
+
+/*.sidebar-item{}*/
+
+.sidebar-label{
+  display: block;
+}

@@ -55,7 +55,7 @@
                       {% for sub_category in sub_categories %}
                         <option value="{{ sub_category.id }}">{{ sub_category.name }}</option>
                       {% endfor %}
-                    </select>g
+                    </select>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -70,11 +70,11 @@
                   <label class="form-label m-0">説明</label>
                   <textarea name="description" placeholder="コマンドの説明を入力" class="form-control" rows="3"></textarea>
                 </div>
-              </form>
-              <p class="item-label m-0">参考ファイル</p>
                 <div class="mb-3">
+                  <p class="item-label m-0">参考ファイル</p>
                   <textarea name="reference" placeholder="その他情報を入力" class="form-control" rows="3"></textarea>
                 </div>
+              </form>
             </div>
             <h4>NOTE作成履歴</h4>
             <div class="card p-3 mb-3">

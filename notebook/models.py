@@ -19,6 +19,7 @@ class Note(models.Model):
   sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
   title = models.CharField(max_length=50)
   command = models.TextField()
-  description =  models.TextField()
+  description =  models.TextField(blank=True, null=True) 
+  reference = models.TextField(blank=True, null=True) 
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)

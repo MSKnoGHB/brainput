@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import MainCategory, SubCategory, Note
-from .forms import NoteForm
+from .models import MainCategory, SubCategory, Note, Command
+from .forms import NoteForm, CommandForm
 
 # Create your views here.
 
@@ -19,14 +19,18 @@ def index(request):
 
 #新規作成処理
 def create(request):
-  form = NoteForm(request.POST)
-  if form.is_valid():
-    note = form.save()
+  note_form = NoteForm(request.POST)
+  command_form = CommandForm(request.POST)
+  if note_form.is_valid() and command_form.is_valid():
+    note = note_form.save()
+    command = command_form.save(commit=False)
+    command.note = note
+    command.save()
     return redirect('show', id=note.id)
   else:
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
-    return render(request, 'notebook/dashboard.html', {'main_categories': main_categories, 'sub_categories': sub_categories, 'form':form})
+    return render(request, 'notebook/dashboard.html', {'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
   
 #詳細画面
 def show(request, id):

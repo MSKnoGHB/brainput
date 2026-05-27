@@ -54,4 +54,4 @@ class Command(models.Model):
     ordering = ['order', 'id']
   
   def __str__(self):
-    return self.cord[:50]
+    return self.code[:50]

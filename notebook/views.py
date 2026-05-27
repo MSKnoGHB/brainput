@@ -21,6 +21,7 @@ def index(request):
 def create(request):
   note_form = NoteForm(request.POST)
   command_form = CommandForm(request.POST)
+
   if note_form.is_valid() and command_form.is_valid():
     note = note_form.save()
     command = command_form.save(commit=False)
@@ -31,7 +32,8 @@ def create(request):
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
     return render(request, 'notebook/dashboard.html', {'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
-  
+
+
 #詳細画面
 def show(request, id):
   note = Note.objects.get(id=id)
@@ -50,19 +52,18 @@ def update(request, id):
   #最初の1件を取得してcommandという変数
   command = note.command_set.first()
   #instans=noteでPATCHになる
+  
   note_form = NoteForm(request.POST, instance=note)
   command_form = CommandForm(request.POST, instance=command)
+  
   if note_form.is_valid() and command_form.is_valid():
-    print('バリデーションOK') 
     note_form.save()
     command_form.save()
-    print('保存OK') 
     return redirect('show', id=note.id)
   else:
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
-    print(note_form.errors) 
-    print(command_form.errors)
+    
     return render(request, 'notebook/edit.html', {'note': note, 'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
   
 #削除処理

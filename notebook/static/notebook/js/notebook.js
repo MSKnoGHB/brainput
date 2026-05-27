@@ -19,7 +19,7 @@ function listReset(){
   .then(response => response.json())
   .then(data =>{
     console.log(data)
-    mainCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
+    mainCategorySelect.innerHTML = '<option value="">カテゴリを選択</option>'
     data.forEach(mainCategory => {
       const option = document.createElement('option')
       option.value = mainCategory.id
@@ -32,7 +32,7 @@ function listReset(){
   .then(response => response.json())
   .then(data =>{
     console.log(data)
-    subCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
+    subCategorySelect.innerHTML = '<option value="">カテゴリを選択</option>'
     data.forEach(subCategory => {
       const option = document.createElement('option')
       option.value = subCategory.id
@@ -49,7 +49,7 @@ const subCategorySelect = document.getElementById('sub-category-select')
 mainCategorySelect.addEventListener('change',(e)=>{
   const mainCategoryId = e.target.value
   
-  if(mainCategoryId == 'blank'){
+  if(mainCategoryId == ''){
     listReset()
     return
   };
@@ -59,13 +59,13 @@ mainCategorySelect.addEventListener('change',(e)=>{
   .then(data =>{
     console.log(data)
     console.log(Array.isArray(data))
-    subCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
+    subCategorySelect.innerHTML = '<option value="">カテゴリを選択</option>'
     data.forEach(subCategory => {
       const option = document.createElement('option')
       option.value = subCategory.id
       option.text = subCategory.name
       subCategorySelect.appendChild(option)
-      if(mainCategoryId != 'blank') {
+      if(mainCategoryId != '') {
         subCategorySelect.value = data[0].id
       }
     })
@@ -75,7 +75,7 @@ mainCategorySelect.addEventListener('change',(e)=>{
 subCategorySelect.addEventListener('change',(e)=>{
   const subCategoryId = e.target.value
 
-  if(subCategoryId == 'blank'){
+  if(subCategoryId == ''){
     listReset()
     return
   };
@@ -83,7 +83,7 @@ subCategorySelect.addEventListener('change',(e)=>{
   fetch(`/api/filtering_sub/?sub_category_id=${subCategoryId}`)
   .then(response => response.json())
   .then(data =>{
-    mainCategorySelect.innerHTML = '<option value="blank">カテゴリを選択</option>'
+    mainCategorySelect.innerHTML = '<option value="">カテゴリを選択</option>'
     console.log(data)
     console.log(Array.isArray(data))
     data.forEach(mainCategory => {
@@ -91,7 +91,7 @@ subCategorySelect.addEventListener('change',(e)=>{
       option.value = mainCategory.id
       option.text = mainCategory.name
       mainCategorySelect.appendChild(option)
-      if(subCategoryId != 'blank') {
+      if(subCategoryId != '') {
         mainCategorySelect.value = data[0].id
       }
     })

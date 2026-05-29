@@ -41,8 +41,8 @@
                 </div>  
                 <div class="d-flex gap-3 mb-3">
                   <div class="w-100">
-                    <label class="form-label m-0">大カテゴリ</label>
-                    <select name="main_category" class="form-select w-100">
+                    <label class="form-label m-0">メインカテゴリ</label>
+                    <select name="main_category" id="main-category-select" class="form-select w-100" required>
                       {% for main_category in main_categories %}
                         <option value="{{ main_category.id }}" {% if main_category.id == note.sub_category.main_category.id %}selected{% endif %}>
                           {{ main_category.name }}
@@ -51,8 +51,8 @@
                     </select>
                   </div>
                   <div class="w-100">
-                    <label class="form-label m-0">小カテゴリ</label>
-                    <select name="sub_category" class="form-select w-100">
+                    <label class="form-label m-0">サブカテゴリ</label>
+                    <select name="sub_category" id="sub-category-select" class="form-select w-100" required>
                       {% for sub_category in sub_categories %}
                         <option value="{{ sub_category.id }}" {% if sub_category.id == note.sub_category.id %}selected{% endif %}>
                           {{ sub_category.name }}
@@ -63,11 +63,11 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label m-0">タイトル</label>
-                  <input type="text" name="title" value="{{ note_form.title.value }}" placeholder="タイトルを入力" class="form-control">
+                  <input type="text" name="title" value="{{ note_form.title.value }}" placeholder="タイトルを入力" class="form-control" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label m-0">コマンド</label>
-                  <textarea name="code" placeholder="コマンドを入力" class="form-control" rows="2">{{ command_form.code.value }} </textarea>
+                  <textarea name="code" placeholder="コマンドを入力" class="form-control" rows="2" required>{{ command_form.code.value }} </textarea>
                 </div>
                 <div class="mb-3">
                   <label class="form-label m-0">説明</label>

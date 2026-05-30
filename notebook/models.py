@@ -31,8 +31,8 @@ class Note(models.Model):
   order = models.IntegerField(default=0)
   sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
   title = models.CharField(max_length=50)
-  description =  models.TextField(blank=True, null=True) 
-  reference = models.TextField(blank=True, null=True) 
+  description =  models.TextField(blank=True, null=True)
+  reference = models.TextField(blank=True, null=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   

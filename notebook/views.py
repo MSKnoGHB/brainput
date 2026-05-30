@@ -44,8 +44,8 @@ def edit(request, id):
   note = Note.objects.get(id=id)
   main_categories = MainCategory.objects.all()
   sub_categories = SubCategory.objects.all()
-  command_form = CommandForm(note.command)
-  return render(request, 'notebook/edit.html',{ 'note':note, 'main_categories': main_categories, 'sub_categories': sub_categories})
+  command = note.command_set.first()
+  return render(request, 'notebook/edit.html',{ 'note':note, 'main_categories': main_categories, 'sub_categories': sub_categories, 'command': command})
   
 #更新処理
 def update(request, id):

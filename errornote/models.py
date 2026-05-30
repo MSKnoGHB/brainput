@@ -1,11 +1,10 @@
 from django.db import models
-from notebook.models import MainCategory, SubCategory
+from notebook.models import SubCategory
 # Create your models here.
 
 
 class ErrorNote(models.Model):
   order = models.IntegerField(default=0)
-  main_category = models.ForeignKey(MainCategory, on_delete=models.PROTECT)
   sub_category = models.ForeignKey(SubCategory, on_delete=models.PROTECT)
   title = models.CharField(max_length=255)
   error_message = models.TextField()

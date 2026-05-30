@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.db.models import Q
 from .models import MainCategory, SubCategory, Note, Command
 from .forms import NoteForm, CommandForm
 
@@ -14,7 +15,18 @@ def dashboard(request):
 
 #一覧画面
 def index(request):
-  notes = Note.objects.all()
+  search = request.GET.get('search_word')
+  if search:
+    notes = Note.objects.filter(
+      Q(sub_category__main_category__name__icontains=search)|
+      Q(sub_category__name__icontains=search)|
+      Q(command__code__icontains=search)|
+      Q(title__icontains=search)|
+      Q(description__icontains=search)
+    ).distinct()
+  else:
+    notes = Note.objects.all()
+    
   return render(request, 'notebook/index.html',{'notes': notes})
 
 #新規作成処理

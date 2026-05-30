@@ -31,7 +31,19 @@
           </div>
 
           <div class="'col-12 col-md-8">
-            <h4>コマンド一覧</h4>
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div>
+                <h4 class="m-0">コマンド一覧</h4>
+                {% if search_word %}
+                  <p>{{notes.count}}件ヒットしました</p>
+                {% endif %}
+              </div>
+              <form class="" method="GET" action="{% url 'notebook:index' %}">
+                <input type="text" name="search_word" placeholder="検索単語を入力" >
+                <button type="submit" class="btn btn-sm btn-success">絞込み</button>
+              </form>
+
+            </div>
             <div class="card p-3 mb-3">
               <table class="table table-hover">
                 <thead>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.db.models import Q
+from django.db.models import Q #高度なクエリ（条件指定）を作成
 from .models import MainCategory, SubCategory, Note, Command
 from .forms import NoteForm, CommandForm
 

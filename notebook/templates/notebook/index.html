@@ -9,12 +9,12 @@
           <div class="'col-12 col-md-4">
             <ul class="sidebar-menu">
               <li class="sidebar-item">
-                <a href="{% url 'dashboard' %}">
+                <a href="{% url 'notebook:dashboard' %}">
                   <span class="sidebar-label p-2">DashBoard</span>
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="{% url 'index' %}">
+                <a href="{% url 'notebook:index' %}">
                   <span class="sidebar-label p-2">CommandNote</span>
                 </a>
               </li>
@@ -49,7 +49,7 @@
                       <td class="pt-3 pb-3">{{ note.title }}</td>
                       <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
                       <td class="text-end pt-3 pb-3">
-                        <a href="{% url 'show' id=note.id %}" class="stretched-link">
+                        <a href="{% url 'notebook:show' id=note.id %}" class="stretched-link">
                           <i class="fa-solid fa-arrow-up-right-from-square text-muted"></i>
                         </a>
                       </td>

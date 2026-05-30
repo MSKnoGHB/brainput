@@ -27,7 +27,7 @@ def create(request):
     command = command_form.save(commit=False)
     command.note = note
     command.save()
-    return redirect('show', id=note.id)
+    return redirect('notebook:show', id=note.id)
   else:
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
@@ -60,7 +60,7 @@ def update(request, id):
   if note_form.is_valid() and command_form.is_valid():
     note_form.save()
     command_form.save()
-    return redirect('show', id=note.id)
+    return redirect('notebook:show', id=note.id)
   else:
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
@@ -71,7 +71,7 @@ def update(request, id):
 def destroy(request, id):
   note = Note.objects.get(id=id) 
   note.delete()
-  return redirect('index')
+  return redirect('notebook:index')
 
 #プルダウンリスト項目リセット
 def api_list_reset(request):

@@ -9,12 +9,12 @@
           <div class="'col-12 col-md-4">
             <ul class="sidebar-menu">
               <li class="sidebar-item">
-                <a href="{% url 'dashboard' %}">
+                <a href="{% url 'notebook:dashboard' %}">
                   <span class="sidebar-label p-2">DashBoard</span>
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="{% url 'index' %}">
+                <a href="{% url 'notebook:index' %}">
                   <span class="sidebar-label p-2">CommandNote</span>
                 </a>
               </li>
@@ -33,14 +33,14 @@
           <div class="'col-12 col-md-8">
             <div class="d-flex justify-content-between align-items-center">
               <h4>コマンド確認</h4>
-              <a href="{% url 'index' %}" class="btn btn-sm btn-secondary">コマンド一覧</a>
+              <a href="{% url 'notebook:index' %}" class="btn btn-sm btn-secondary">コマンド一覧</a>
             </div>
             <div class="card bg-body-tertiary bg-opacity-50 p-3 mb-3">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="note-sub-category badge bg-primary fs-5">{{note.sub_category}}</div>
                 <div class="d-flex gap-3">
-                  <a href="{% url 'edit' id=note.id %}" class="btn btn-sm btn-success">編集</a>
-                  <a href="{% url 'destroy' id=note.id %}" class="btn btn-sm btn-danger">削除</a>
+                  <a href="{% url 'notebook:edit' id=note.id %}" class="btn btn-sm btn-success">編集</a>
+                  <a href="{% url 'notebook:destroy' id=note.id %}" class="btn btn-sm btn-danger">削除</a>
                 </div>
               </div>
               

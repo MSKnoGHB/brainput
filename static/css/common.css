@@ -1,0 +1,30 @@
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif !important;
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+  color: #333333;
+  background-color: #fcfcfc;
+}
+
+.sidebar-menu{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.sidebar-menu :hover{
+  background-color: rgba(146, 239, 120, 0.2);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar-label{
+  display: block;
+}

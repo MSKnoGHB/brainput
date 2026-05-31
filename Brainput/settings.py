@@ -58,7 +58,8 @@ ROOT_URLCONF = 'Brainput.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #共通ファイルの場所を追加
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+#共通CSSの場所を追加
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# memo
+# HTML（テンプレート）： 探す場所を「上書き（または追加）」する
+# CSS（スタティック）： 探す場所に「合流（マージ）」させる

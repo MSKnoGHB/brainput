@@ -3,34 +3,13 @@
   <h3>DashBoard</h3> 
   <div class="container">
     <div class="row">
-      <div class="'col-12">
+      <div class="col-12">
 
         <div class="row">
-          <div class="'col-12 col-md-4">
-            <ul class="sidebar-menu">
-              <li class="sidebar-item">
-                <a href="{% url 'notebook:dashboard' %}">
-                  <span class="sidebar-label p-2">DashBoard</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a href="{% url 'notebook:index' %}">
-                  <span class="sidebar-label p-2">CommandNote</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <span class="sidebar-label p-2">上のプルダウンで一覧や履歴画面を出す</span>
-              </li>
-              <li class="sidebar-item">
-                <span class="sidebar-label p-2">エラーNOTE</span>
-              </li>
-              <li class="sidebar-item">
-                <span class="sidebar-label p-2">比較NOTE</span>
-              </li>
-            </ul>
+          <div class="col-12 col-md-4">
+            {% include 'notebook/_sidebar.html' %}
           </div>
-
-          <div class="'col-12 col-md-8">
+          <div class="col-12 col-md-8">
             <h4>NOTE新規作成</h4>
             <div class="card bg-body-tertiary bg-opacity-50 p-3 mb-3">
               <form method="POST" action="/create/">

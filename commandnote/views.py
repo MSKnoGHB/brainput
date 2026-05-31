@@ -11,7 +11,7 @@ def dashboard(request):
   notes = Note.objects.all()
   main_categories = MainCategory.objects.all()
   sub_categories = SubCategory.objects.all()
-  return render(request, 'notebook/dashboard.html',{'notes': notes, 'main_categories': main_categories, 'sub_categories': sub_categories})
+  return render(request, 'commandnote/dashboard.html',{'notes': notes, 'main_categories': main_categories, 'sub_categories': sub_categories})
 
 #一覧画面
 def index(request):
@@ -27,7 +27,7 @@ def index(request):
   else:
     notes = Note.objects.all()
     
-  return render(request, 'notebook/index.html',{'notes': notes})
+  return render(request, 'commandnote/index.html',{'notes': notes})
 
 #新規作成処理
 def create(request):
@@ -39,17 +39,17 @@ def create(request):
     command = command_form.save(commit=False)
     command.note = note
     command.save()
-    return redirect('notebook:show', id=note.id)
+    return redirect('commandnote:show', id=note.id)
   else:
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
-    return render(request, 'notebook/dashboard.html', {'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
+    return render(request, 'commandnote/dashboard.html', {'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
 
 
 #詳細画面
 def show(request, id):
   note = Note.objects.get(id=id)
-  return render(request, 'notebook/show.html', {'note':note})
+  return render(request, 'commandnote/show.html', {'note':note})
 
 #編集画面
 def edit(request, id):
@@ -57,7 +57,7 @@ def edit(request, id):
   main_categories = MainCategory.objects.all()
   sub_categories = SubCategory.objects.all()
   command = note.command_set.first()
-  return render(request, 'notebook/edit.html',{ 'note':note, 'main_categories': main_categories, 'sub_categories': sub_categories, 'command': command})
+  return render(request, 'commandnote/edit.html',{ 'note':note, 'main_categories': main_categories, 'sub_categories': sub_categories, 'command': command})
   
 #更新処理
 def update(request, id):
@@ -72,18 +72,18 @@ def update(request, id):
   if note_form.is_valid() and command_form.is_valid():
     note_form.save()
     command_form.save()
-    return redirect('notebook:show', id=note.id)
+    return redirect('commandnote:show', id=note.id)
   else:
     main_categories = MainCategory.objects.all()
     sub_categories = SubCategory.objects.all()
     
-    return render(request, 'notebook/edit.html', {'note': note, 'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
+    return render(request, 'commandnote/edit.html', {'note': note, 'main_categories': main_categories, 'sub_categories': sub_categories, 'note_form':note_form, 'command_form':command_form})
   
 #削除処理
 def destroy(request, id):
   note = Note.objects.get(id=id) 
   note.delete()
-  return redirect('notebook:index')
+  return redirect('commandnote:index')
 
 #プルダウンリスト項目リセット
 def api_list_reset(request):

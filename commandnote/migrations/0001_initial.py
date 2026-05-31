@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=10)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='notebook.category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='commandnote.category')),
             ],
         ),
         migrations.CreateModel(
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='notebook.subcategory')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='commandnote.subcategory')),
             ],
         ),
     ]

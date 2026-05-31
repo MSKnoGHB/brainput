@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('notebook', '0004_note_reference_alter_note_description'),
+        ('commandnote', '0004_note_reference_alter_note_description'),
     ]
 
     operations = [
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
                 ('code', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('note', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='notebook.note')),
+                ('note', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='commandnote.note')),
             ],
             options={
                 'ordering': ['order', 'id'],

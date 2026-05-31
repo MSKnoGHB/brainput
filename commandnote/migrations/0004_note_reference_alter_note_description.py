@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('notebook', '0003_alter_maincategory_name_alter_note_title_and_more'),
+        ('commandnote', '0003_alter_maincategory_name_alter_note_title_and_more'),
     ]
 
     operations = [

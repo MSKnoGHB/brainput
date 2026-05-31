@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('notebook', '0005_alter_maincategory_options_alter_note_options_and_more'),
+        ('commandnote', '0005_alter_maincategory_options_alter_note_options_and_more'),
     ]
 
     operations = [
@@ -25,8 +25,8 @@ class Migration(migrations.Migration):
                 ('reference', models.TextField(blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('main_category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='notebook.maincategory')),
-                ('sub_category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='notebook.subcategory')),
+                ('main_category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='commandnote.maincategory')),
+                ('sub_category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='commandnote.subcategory')),
             ],
             options={
                 'ordering': ['order', 'id'],

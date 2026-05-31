@@ -1,4 +1,4 @@
-{% extends 'notebook/base.html' %}
+{% extends 'commandnote/base.html' %}
 {% block content %}
   <h3>DashBoard</h3> 
   <div class="container">
@@ -18,7 +18,7 @@
                   <p>{{notes.count}}件ヒットしました</p>
                 {% endif %}
               </div>
-              <form class="" method="GET" action="{% url 'notebook:index' %}">
+              <form class="" method="GET" action="{% url 'commandnote:index' %}">
                 <input type="text" name="search_word" placeholder="検索単語を入力" >
                 <button type="submit" class="btn btn-sm btn-success">絞込み</button>
               </form>
@@ -41,7 +41,7 @@
                       <td class="pt-3 pb-3">{{ note.title }}</td>
                       <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
                       <td class="text-end pt-3 pb-3">
-                        <a href="{% url 'notebook:show' id=note.id %}" class="stretched-link">
+                        <a href="{% url 'commandnote:show' id=note.id %}" class="stretched-link">
                           <i class="fa-solid fa-arrow-up-right-from-square text-muted"></i>
                         </a>
                       </td>

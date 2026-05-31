@@ -1,5 +1,5 @@
 from django.db import models
-from notebook.models import SubCategory
+from commandnote.models import SubCategory
 # Create your models here.
 
 

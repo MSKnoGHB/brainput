@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.db.models import Q 
+from commandnote.models import MainCategory, SubCategory
 from .models import ErrorNote
 from .forms import ErrorNoteForm
 
@@ -12,11 +13,16 @@ def index(request):
 
 
 def create(request):
+  error_notes = ErrorNote.objects.all()
+  main_categories =  MainCategory.objects.all()
+  sub_categories = SubCategory.objects.all()
   error_note_form = ErrorNoteForm(request.POST or None)
+  print("form:",error_note_form)
+  print("Method:",request.method)
   if request.method == 'POST' and error_note_form.is_valid():
     error_note = error_note_form.save()
     return redirect('errornote:show', id=error_note.id)
-  return render(request, 'errornote/create.html',{'error_note_form':error_note_form})
+  return render(request, 'errornote/create.html',{'error_notes': error_notes, 'main_categories':main_categories,'sub_categories':sub_categories,'error_note_form':error_note_form})
 
 
 def show(request, id):

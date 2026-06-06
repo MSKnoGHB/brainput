@@ -77,7 +77,7 @@
                     <td class="pt-3 pb-3">{{ note.title }}</td>
                     <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
                     <td class="text-end pt-3 pb-3">
-                      <a href="{% url 'commandnote:show' id=note.id %}" class="stretched-link">
+                      <a href="{% url 'errornote:show' id=note.id %}" class="stretched-link">
                         <i class="fa-solid fa-arrow-up-right-from-square text-muted"></i>
                       </a>
                     </td>

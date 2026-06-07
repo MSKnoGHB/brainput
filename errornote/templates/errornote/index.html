@@ -1,6 +1,58 @@
-{% extends 'errornote/base.html' %}
+{% extends 'commandnote/base.html' %}
 {% block content %}
+  <h3>DashBoard</h3> 
+  <div class="container">
+    <div class="row">
+      <div class="'col-12">
 
-  {% include '_sidebar.html' %}
+        <div class="row">
+          <div class="'col-12 col-md-4">
+            {% include '_sidebar.html' %}
+          </div>
 
+          <div class="'col-12 col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div>
+                <h4 class="m-0">ErrorNote一覧</h4>
+                {% if search_word %}
+                  <p>{{error_notes.count}}件ヒットしました</p>
+                {% endif %}
+              </div>
+              <form class="" method="GET" action="{% url 'errornote:index' %}">
+                <input type="text" name="search_word" placeholder="検索単語を入力" >
+                <button type="submit" class="btn btn-sm btn-success">絞込み</button>
+              </form>
+
+            </div>
+            <div class="card p-3 mb-3">
+              <table class="table table-hover">
+                <thead>
+                  <tr class="align-middle">
+                    <th class="pb-3">サブカテゴリ</th>
+                    <th class="pb-3">タイトル</th>
+                    <th class="pb-3">日付</th>
+                    <th class="pb-3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for note in error_notes %} 
+                    <tr class="align-middle position-relative">
+                      <td class="pt-3 pb-3">{{ note.sub_category }}</td>
+                      <td class="pt-3 pb-3">{{ note.title }}</td>
+                      <td class="pt-3 pb-3">{{ note.created_at|date:"Y/m/d" }}</td>
+                      <td class="text-end pt-3 pb-3">
+                        <a href="{% url 'errornote:show' id=note.id %}" class="stretched-link">
+                          <i class="fa-solid fa-arrow-up-right-from-square text-muted"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  {% endfor %}  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

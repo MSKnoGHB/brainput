@@ -1,6 +1,6 @@
 {% extends 'commandnote/base.html' %}
 {% block content %}
-  <h3>DashBoard</h3> 
+  <h3>HeaderPartial</h3> 
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -10,7 +10,7 @@
             {% include '_sidebar.html' %}
           </div>
           <div class="col-12 col-md-8">
-            <h4>NOTE新規作成</h4>
+            <h4>CommandNote新規作成</h4>
             <div class="card bg-body-tertiary bg-opacity-50 p-3 mb-3">
               <form method="POST" action="/create/">
                 {% csrf_token %}
@@ -50,12 +50,12 @@
                   <textarea name="description" placeholder="コマンドの説明を入力" class="form-control" rows="3">{{ note_form.description.value|default:'' }}</textarea>
                 </div>
                 <div class="mb-3">
-                  <p class="item-label m-0">参考ファイル</p>
+                  <p class="item-label m-0">その他情報</p>
                   <textarea name="reference" placeholder="その他情報を入力" class="form-control" rows="3">{{ note_form.reference.value|default:'' }}</textarea>
                 </div>
               </form>
             </div>
-            <h4>NOTE作成履歴</h4>
+            <h4>CommandNote作成履歴</h4>
             <div class="card p-3 mb-3">
               <table class="table table-hover">
                 <thead>

@@ -1,6 +1,6 @@
 {% extends 'commandnote/base.html' %}
 {% block content %}
-  <h3>Edit</h3> 
+  <h3>HeaderPartial</h3> 
   <div class="container">
     <div class="row">
       <div class="'col-12">
@@ -11,7 +11,7 @@
           </div>
 
           <div class="'col-12 col-md-8">
-            <h4>NOTE編集</h4>
+            <h4>CommandNote編集</h4>
             <div class="card bg-body-tertiary bg-opacity-50 p-3 mb-3">
               <form method="POST" action="{% url 'commandnote:update' id=note.id %}">
                 {% csrf_token %}

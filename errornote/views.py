@@ -31,12 +31,14 @@ def show(request, id):
 
   
 def update(request, id):
+  main_categories =  MainCategory.objects.all()
+  sub_categories = SubCategory.objects.all()
   error_note = ErrorNote.objects.get(id=id)
   error_note_form = ErrorNoteForm(request.POST, instance=error_note)
   if request.method =='POST' and error_note_form.is_valid():
     error_note_form.save()
-    return redirect('errornote:show',{'error_note':error_note, 'error_note_form':error_note_form})
-  return render(request, 'errornote/update.html',{'error_note':error_note, 'error_note_form':error_note_form})
+    return redirect('errornote:show', id=error_note.id)
+  return render(request, 'errornote/update.html',{'error_note':error_note, 'error_note_form':error_note_form, 'main_categories':main_categories, 'sub_categories':sub_categories})
 
   
 def destroy(request, id):

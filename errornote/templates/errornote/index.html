@@ -1,4 +1,4 @@
-{% extends 'commandnote/base.html' %}
+{% extends 'errornote/base.html' %}
 {% block content %}
   <h3>HeaderPartial</h3>  
   <div class="container">
@@ -14,16 +14,16 @@
             <div class="d-flex justify-content-between align-items-center mb-1">
               <div>
                 <h4 class="m-0">ErrorNote一覧</h4>
-                {% if search_word %}
-                  <p>{{error_notes.count}}件ヒットしました</p>
-                {% endif %}
               </div>
               <form class="" method="GET" action="{% url 'errornote:index' %}">
                 <input type="text" name="search_word" placeholder="検索単語を入力" >
                 <button type="submit" class="btn btn-sm btn-success">絞込み</button>
               </form>
-
             </div>
+            {% if search %}
+              <p class="mt-3">{{error_notes.count}}件ヒットしました</p>
+            {% endif %}
+            
             <div class="card p-3 mb-3">
               <table class="table table-hover">
                 <thead>

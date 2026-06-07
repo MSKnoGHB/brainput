@@ -8,8 +8,20 @@ from .forms import ErrorNoteForm
 # Create your views here.
 
 def index(request):
-  error_notes = ErrorNote.objects.all()
-  return render(request, 'errornote/index.html', {'error_notes': error_notes})
+  search = request.GET.get('search_word')
+  if search:
+    error_notes = ErrorNote.objects.filter(
+      Q(sub_category__main_category__name__icontains=search)|
+      Q(sub_category__name__icontains=search)|
+      Q(title__icontains=search)|
+      Q(error_message__icontains=search)|
+      Q(target_file__icontains=search)|
+      Q(resolution__icontains=search)|
+      Q(reference__icontains=search)
+    ).distinct()
+  else:
+    error_notes = ErrorNote.objects.all()
+  return render(request, 'errornote/index.html', {'error_notes': error_notes, 'search':search})
 
 
 def create(request):

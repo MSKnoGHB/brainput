@@ -27,7 +27,7 @@ def index(request):
   else:
     notes = Note.objects.all()
     
-  return render(request, 'commandnote/index.html',{'notes': notes})
+  return render(request, 'commandnote/index.html',{'notes': notes, 'search': search})
 
 #新規作成処理
 def create(request):
